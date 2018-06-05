@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Region code biasing (US)</title>
+    <style>
+      html, body, #map-canvas {
+        height: 100%;
+        margin: 0px;
+        padding: 0px
+      }
+    div ~  a{
+        display:  inline-block;
+        cursor: pointer;
+         margin: 0 15px;
+         background: #FFCC99 ;
+         padding: 4px 8px;
+      }
+    div ~ a:hover{
+       background: #CCCCCC
+     }
+
+    </style>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+    <script>
+var geocoder;
+var map;
+var query = new Array('Одинцовский р-н, г. Кубинка',
+					  'Одинцовский р-н, г. Тучково',
+					  'г. Одинцово',
+					  'г. Щелково',
+					  'г. Химки');
+
+function initialize() {
+  geocoder = new google.maps.Geocoder();
+  var mapOptions = {
+    zoom: 15
+  }
+  map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+  codeAddress();
+}	
+
+function codeAddress() {
+	var count=0;
+	var counterVid = 1;
+	for (var i = 0; i < query.length; i++) {
+		var address = query[count];
+		geocoder.geocode( { 'address': address}, function(results, status) {
+			if (status == google.maps.GeocoderStatus.OK) {
+				var a = document.createElement('a');
+				a.appendChild(document.createTextNode(results[0].address_components[1].short_name+', '+results[0].address_components[0].short_name));
+				a.onclick = function() {
+				   map.setZoom(15);
+				   map.setCenter(results[0].geometry.location);
+
+				}
+				var div = document.createElement('div');
+				div.className = "alert alert-success";
+				div.innerHTML = "Точка продажи " + (counterVid++) + ":";
+				document.body.appendChild(div);
+				document.body.appendChild(a);
+				div = document.createElement('div'); // перенос на новую строку
+				div.className = "alert alert-success";//
+				div.innerHTML = "<br>";//
+				document.body.appendChild(div);
+				map.setCenter(results[0].geometry.location);
+				var marker = new google.maps.Marker({
+				  map: map,
+				  position: results[0].geometry.location
+				});
+			} else {
+				alert('Geocode was not successful for the following reason: ' + status);
+			}
+		});
+		count++;
+	}
+}
+
+google.maps.event.addDomListener(window, 'load', initialize);
+
+    </script>
+  </head>
+  <body>
+		<div class="navi">
+			<div><a href="./index.html"> <img src="./Glavnaya копия.png" alt="Главная"></a></div>
+			<div><a href="./History.html"> <img src="./History копия.png" alt="История"></a></div>
+			<div><a href="./Recepts.html"> <img src="./Receptscop.png" alt="Рецепты"></a></div>
+			<div><a href="./Gallereya.html"> <img src="./Galereyacop.png" alt="Галерея"></a></div>
+			<div><a href="./geolocate.html"> <img src="./geolocate.png" alt="Где купить?"></a></div>
+		</div>	
+		
+		<div id="map-canvas"  style="width: 600px; height: 400px"></div>
+			<div class='cop'>
+				<hr />
+				&copy Dorogin
+			</div>
+  </body>
+</html>
