@@ -1,0 +1,77 @@
+﻿.header
+{
+	background: #77cccc;
+	position: absolute;
+	left: 0%;
+	top: 0%;
+	height: 20%;
+	width: 100%;
+	color: #ff0066;
+	font-family: Arial URL;
+	font-size: 1cm;
+	/*border:1px solid ;*/
+}
+
+.navi
+{
+	color: #9900ff;
+	font-size: 15pt;
+	position: absolute;
+	left: 0%;
+	top: 20%;
+	float: left;
+   	width: 10%;
+	height:	80%;
+	text-align: center;
+	/*border:1px solid ;*/
+}
+
+.content
+{
+	color: #333399;
+	font-size: 5mm;
+	position: absolute;
+	left: 20%;
+	top: 20%;
+	width: 70%;
+	height: 80%;
+	text-align: center;
+	/*border:1px solid ;*/
+}
+.content ul
+{
+	text-align: left;
+}
+
+.other
+{
+	background: #88cccc;
+	position: absolute;
+	left: 80%;
+	top: 20%;
+	width: 20%;
+	height: 80%;
+	text-align: center;
+	/*border:1px solid ;*/
+}
+
+.cop
+{
+	position: relative;
+	color: #000000;
+	font-size: 5mm;
+	text-align: center;
+	/*border:1px solid ;*/
+}
+body
+{
+	background-color: #99cccc;
+	font-size: 12px;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+
+
+
+	
+	
